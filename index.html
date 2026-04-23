@@ -2,111 +2,232 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Wi-Fi Configuration Checklist</title>
+<title>H3avy_wat3r Wi-Fi Optimization</title>
+
+<!-- GSAP -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
 <style>
-    body {
-        font-family: Arial, sans-serif;
-        background: #f4f6f8;
-        padding: 30px;
-    }
-    .container {
-        max-width: 700px;
-        margin: auto;
-        background: white;
-        padding: 25px;
-        border-radius: 10px;
-        box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    h1 {
-        text-align: center;
-    }
-    .step {
-        padding: 10px;
-        border-bottom: 1px solid #ddd;
-        display: flex;
-        align-items: center;
-    }
-    .step:last-child {
-        border-bottom: none;
-    }
-    input[type="checkbox"] {
-        margin-right: 10px;
-        transform: scale(1.2);
-    }
-    .completed {
-        text-decoration: line-through;
-        color: gray;
-    }
-    .progress {
-        margin-top: 20px;
-        font-weight: bold;
-        text-align: center;
-    }
-    button {
-        margin-top: 15px;
-        padding: 10px 15px;
-        border: none;
-        background: #007bff;
-        color: white;
-        border-radius: 5px;
-        cursor: pointer;
-    }
-    button:hover {
-        background: #0056b3;
-    }
+body {
+    margin: 0;
+    font-family: "Segoe UI", sans-serif;
+    overflow-x: hidden;
+    background: #0f172a;
+    color: #fff;
+}
+
+/* interactive background */
+#bg {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: radial-gradient(circle at center, #1e3c72, #020617);
+}
+
+/* floating particles */
+.particle {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: #38bdf8;
+    border-radius: 50%;
+    opacity: 0.6;
+}
+
+.container {
+    max-width: 750px;
+    margin: 40px auto;
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(10px);
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 0 25px rgba(0,0,0,0.5);
+}
+
+h1 {
+    text-align: center;
+    color: #38bdf8;
+}
+
+.step {
+    padding: 12px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    display: flex;
+    align-items: center;
+    transition: 0.3s;
+}
+
+.step:hover {
+    background: rgba(255,255,255,0.08);
+}
+
+input[type="checkbox"] {
+    margin-right: 10px;
+    transform: scale(1.2);
+}
+
+.completed {
+    text-decoration: line-through;
+    color: #94a3b8;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 20px;
+    background: #1e293b;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #22c55e, #38bdf8);
+    border-radius: 10px;
+}
+
+.progress-text {
+    text-align: center;
+    margin-top: 8px;
+}
+
+button {
+    margin-top: 15px;
+    padding: 10px;
+    border: none;
+    background: #38bdf8;
+    color: black;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/* video box */
+.video-box {
+    margin-top: 25px;
+    text-align: center;
+}
+
+video {
+    width: 200px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.7);
+}
 </style>
 </head>
+
 <body>
 
+<div id="bg"></div>
+
 <div class="container">
-    <h1>Wi-Fi Setup Checklist</h1>
+    <h1>⚡ H3avy_wat3r Setup</h1>
 
-    <div class="step"><input type="checkbox" onclick="updateProgress(this)"> Press <b>Windows + R</b></div>
-    <div class="step"><input type="checkbox" onclick="updateProgress(this)"> Type <b>"Control Panel"</b></div>
-    <div class="step"><input type="checkbox" onclick="updateProgress(this)"> Open <b>Network and Internet</b></div>
-    <div class="step"><input type="checkbox" onclick="updateProgress(this)"> Open <b>Network and Sharing Center</b></div>
-    <div class="step"><input type="checkbox" onclick="updateProgress(this)"> Click Wi-Fi under <b>"Connections"</b> (see Exhibit 1.0)</div>
-    <div class="step"><input type="checkbox" onclick="updateProgress(this)"> Click <b>Properties</b></div>
-    <div class="step"><input type="checkbox" onclick="updateProgress(this)"> Ensure <b>Client for Microsoft Networks</b> is selected</div>
-    <div class="step"><input type="checkbox" onclick="updateProgress(this)"> Click <b>Configure</b></div>
-    <div class="step"><input type="checkbox" onclick="updateProgress(this)"> Go to <b>Advanced</b> tab</div>
-    <div class="step"><input type="checkbox" onclick="updateProgress(this)"> Set <b>802.11a/b/g Wireless Mode</b> to best available (see Exhibit 2.0)</div>
-    <div class="step"><input type="checkbox" onclick="updateProgress(this)"> Click <b>OK</b> (Wi-Fi may disconnect briefly)</div>
+    <div class="step"><input type="checkbox"> Windows + R</div>
+    <div class="step"><input type="checkbox"> Type "Control Panel"</div>
+    <div class="step"><input type="checkbox"> Network and Internet</div>
+    <div class="step"><input type="checkbox"> Network and Sharing Center</div>
+    <div class="step"><input type="checkbox"> Click Wi-Fi (Connections)</div>
+    <div class="step"><input type="checkbox"> Properties</div>
+    <div class="step"><input type="checkbox"> Enable Client for Microsoft Networks</div>
+    <div class="step"><input type="checkbox"> Configure</div>
+    <div class="step"><input type="checkbox"> Advanced tab</div>
+    <div class="step"><input type="checkbox"> Set 802.11 mode to best</div>
+    <div class="step"><input type="checkbox"> Click OK</div>
 
-    <div class="progress" id="progressText">Progress: 0%</div>
+    <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+    </div>
+    <div class="progress-text" id="progressText">Progress: 0%</div>
 
     <div style="text-align:center;">
-        <button onclick="resetChecklist()">Reset Checklist</button>
+        <button onclick="resetChecklist()">Reset</button>
     </div>
+
+    <!-- video -->
+    <div class="video-box">
+        <p>reward unlocked ↓</p>
+        <video autoplay loop muted>
+            <source src="https://images-ext-1.discordapp.net/external/_uCe3Br7yV1mKDZxbwjW_uAQCdKigUPp-Asr0RFZcG4/https/media.tenor.com/5x6drot1nJoAAAPo/hamster-capybara.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <p style="text-align:center; font-size:12px; margin-top:20px;">
+        Built for H3avy_wat3r • Terry Davis supporter • Open source enjoyer<br>
+        <a href="https://github.com/jagar125u/forheavywater" target="_blank" style="color:#38bdf8;">
+            github.com/jagar125u/forheavywater
+        </a>
+    </p>
 </div>
 
 <script>
-function updateProgress(checkbox) {
-    const steps = document.querySelectorAll('.step input');
-    let checked = 0;
+const boxes = document.querySelectorAll("input");
 
-    steps.forEach((box, index) => {
-        const text = box.parentElement;
-        if (box.checked) {
-            checked++;
-            text.classList.add('completed');
+function update() {
+    let count = 0;
+    boxes.forEach((b,i)=>{
+        if(b.checked){
+            count++;
+            b.parentElement.classList.add("completed");
         } else {
-            text.classList.remove('completed');
+            b.parentElement.classList.remove("completed");
         }
+        localStorage.setItem("step"+i,b.checked);
     });
 
-    const percent = Math.round((checked / steps.length) * 100);
-    document.getElementById('progressText').innerText = "Progress: " + percent + "%";
+    let pct = Math.round((count/boxes.length)*100);
+    document.getElementById("progressText").innerText = "Progress: "+pct+"%";
+    document.getElementById("progressFill").style.width = pct+"%";
+
+    gsap.to(".progress-fill",{duration:0.4, scaleX:1});
 }
 
-function resetChecklist() {
-    const steps = document.querySelectorAll('.step input');
-    steps.forEach(box => {
-        box.checked = false;
-        box.parentElement.classList.remove('completed');
+boxes.forEach((b,i)=>{
+    b.addEventListener("change",update);
+    if(localStorage.getItem("step"+i)==="true"){
+        b.checked=true;
+    }
+});
+
+update();
+
+/* reset */
+function resetChecklist(){
+    boxes.forEach((b,i)=>{
+        b.checked=false;
+        localStorage.removeItem("step"+i);
     });
-    document.getElementById('progressText').innerText = "Progress: 0%";
+    update();
 }
+
+/* particles */
+for(let i=0;i<40;i++){
+    let p=document.createElement("div");
+    p.className="particle";
+    document.body.appendChild(p);
+
+    gsap.set(p,{
+        x: Math.random()*window.innerWidth,
+        y: Math.random()*window.innerHeight
+    });
+
+    gsap.to(p,{
+        x: "+="+(Math.random()*200-100),
+        y: "+="+(Math.random()*200-100),
+        repeat:-1,
+        yoyo:true,
+        duration:5+Math.random()*5,
+        ease:"sine.inOut"
+    });
+}
+
+/* mouse interaction */
+document.addEventListener("mousemove",(e)=>{
+    gsap.to("#bg",{
+        duration:0.5,
+        background:`radial-gradient(circle at ${e.clientX}px ${e.clientY}px, #1e3c72, #020617)`
+    });
+});
 </script>
 
 </body>
