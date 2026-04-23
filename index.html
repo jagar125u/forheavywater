@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Wi-Fi Configuration Checklist</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f4f6f8;
+        padding: 30px;
+    }
+    .container {
+        max-width: 700px;
+        margin: auto;
+        background: white;
+        padding: 25px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h1 {
+        text-align: center;
+    }
+    .step {
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+        display: flex;
+        align-items: center;
+    }
+    .step:last-child {
+        border-bottom: none;
+    }
+    input[type="checkbox"] {
+        margin-right: 10px;
+        transform: scale(1.2);
+    }
+    .completed {
+        text-decoration: line-through;
+        color: gray;
+    }
+    .progress {
+        margin-top: 20px;
+        font-weight: bold;
+        text-align: center;
+    }
+    button {
+        margin-top: 15px;
+        padding: 10px 15px;
+        border: none;
+        background: #007bff;
+        color: white;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    button:hover {
+        background: #0056b3;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Wi-Fi Setup Checklist</h1>
+
+    <div class="step"><input type="checkbox" onclick="updateProgress(this)"> Press <b>Windows + R</b></div>
+    <div class="step"><input type="checkbox" onclick="updateProgress(this)"> Type <b>"Control Panel"</b></div>
+    <div class="step"><input type="checkbox" onclick="updateProgress(this)"> Open <b>Network and Internet</b></div>
+    <div class="step"><input type="checkbox" onclick="updateProgress(this)"> Open <b>Network and Sharing Center</b></div>
+    <div class="step"><input type="checkbox" onclick="updateProgress(this)"> Click Wi-Fi under <b>"Connections"</b> (see Exhibit 1.0)</div>
+    <div class="step"><input type="checkbox" onclick="updateProgress(this)"> Click <b>Properties</b></div>
+    <div class="step"><input type="checkbox" onclick="updateProgress(this)"> Ensure <b>Client for Microsoft Networks</b> is selected</div>
+    <div class="step"><input type="checkbox" onclick="updateProgress(this)"> Click <b>Configure</b></div>
+    <div class="step"><input type="checkbox" onclick="updateProgress(this)"> Go to <b>Advanced</b> tab</div>
+    <div class="step"><input type="checkbox" onclick="updateProgress(this)"> Set <b>802.11a/b/g Wireless Mode</b> to best available (see Exhibit 2.0)</div>
+    <div class="step"><input type="checkbox" onclick="updateProgress(this)"> Click <b>OK</b> (Wi-Fi may disconnect briefly)</div>
+
+    <div class="progress" id="progressText">Progress: 0%</div>
+
+    <div style="text-align:center;">
+        <button onclick="resetChecklist()">Reset Checklist</button>
+    </div>
+</div>
+
+<script>
+function updateProgress(checkbox) {
+    const steps = document.querySelectorAll('.step input');
+    let checked = 0;
+
+    steps.forEach((box, index) => {
+        const text = box.parentElement;
+        if (box.checked) {
+            checked++;
+            text.classList.add('completed');
+        } else {
+            text.classList.remove('completed');
+        }
+    });
+
+    const percent = Math.round((checked / steps.length) * 100);
+    document.getElementById('progressText').innerText = "Progress: " + percent + "%";
+}
+
+function resetChecklist() {
+    const steps = document.querySelectorAll('.step input');
+    steps.forEach(box => {
+        box.checked = false;
+        box.parentElement.classList.remove('completed');
+    });
+    document.getElementById('progressText').innerText = "Progress: 0%";
+}
+</script>
+
+</body>
+</html>
